@@ -44,18 +44,18 @@ class clockWise
         incrementValue.add(61);
         incrementValue.add(27);
         incrementValue.add(-1);
-
+        
         for(int i = 0; i < incrementValue.size(); i++)
         {
             if(!(incrementValue.get(i).equals(-1)))
             {
                 
-                System.out.println(incrementValue.get(i) + ": " + timeGenerator(incrementValue.get(i)));
+                System.out.println(timeGenerator(incrementValue.get(i)));
             }
             else
                 System.exit(0);
         }
-    
+        
     }
 
     public static int timeGenerator(int incrementer)
@@ -69,12 +69,17 @@ class clockWise
  
        while (isCorrect != true)
        {
-           if(clockMinutes + incrementer > 60)
+           if(clockMinutes + incrementer >= 60)
            {
                 clockMinutes = (clockMinutes + incrementer) - 60;
                 clockHour++;
                 timeAlluded += incrementer;
 
+                if(clockMinutes >= 60)
+                { 
+                    clockMinutes -= 60;
+                    clockHour++;
+                }
            }
            else
            { 
@@ -88,7 +93,7 @@ class clockWise
            if(clockHour == hour && clockMinutes == minutes)
                 isCorrect = true;
        }
-
+       
         return timeAlluded;
     }
 }
